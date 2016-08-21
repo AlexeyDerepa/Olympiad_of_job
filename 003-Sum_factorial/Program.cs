@@ -29,22 +29,12 @@ namespace _003_Sum_factorial
 
         private static int Input()
         {
-            bool flag = true;
             int number;
             do{
                 Console.Clear();
-                Console.WriteLine("Enter number > 0");
-                Console.Write("N = ");
+                Console.Write("Enter number > 0\nN = ");
                 int.TryParse(Console.ReadLine(),out number);
-                if (number<=0)
-                {
-                    flag = true;
-                }
-                else
-                {
-                    flag = false;
-                }
-            }while(flag);
+            } while (number <= 0);
             return number;
         }
         

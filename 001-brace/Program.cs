@@ -25,24 +25,13 @@ namespace _001_brace
         }
         private static int Input()
         {
-            bool flag = false;
-
             int number = 0;
             do
             {
                 Console.Clear();
-                Console.WriteLine("Enter a number of braces");
-                Console.Write("N = ");
+                Console.Write("Enter a number of braces\nN = ");
                 int.TryParse(Console.ReadLine(), out number);
-                if (number == 0)
-                {
-                    flag = true;
-                }
-                else
-                {
-                    flag = false;
-                }
-            } while (flag);
+            } while (number == 0);
             return number;
         }
 
@@ -91,20 +80,16 @@ namespace _001_brace
             {
 
                 if (str[i] == ')')
-                {
                     countRight++;
-                }
                 else if (str[i] == '(')
                     countLeft++;
+
                 if (countRight > countLeft)
-                {
                     return false;
-                }
             }
+
             if (countLeft != countRight)
-            {
                 return false;
-            }
 
             return true;
         }

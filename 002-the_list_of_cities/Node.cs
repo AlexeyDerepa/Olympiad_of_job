@@ -20,10 +20,6 @@ namespace _002_the_list_of_cities
             Number = ++count;
             ChildrenDictionary = new Dictionary<Node, long>();
         }
-        public void Handler()
-        {
-            Console.WriteLine("visited {0}", this.Name);
-        }
 
         public Node AddChildreDictionaryn(Node node, int cost)
         {

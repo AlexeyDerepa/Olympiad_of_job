@@ -37,7 +37,7 @@ namespace _002_the_list_of_cities
             }
 
         }
-        public void TestProject()
+        public void TestProject()//method for quickly test the my of project
         {
 
             Node n1 = new Node("gdansk");
@@ -85,17 +85,14 @@ namespace _002_the_list_of_cities
 
         }
 
-        private void ProcessitgRequest()
+        private void ProcessitgRequest()//processing of entered data
         {
-            Node nodeStart;
-            Node nodeFinish;
+            Node nodeStart = new Node();
+            Node nodeFinish = new Node();
             foreach (string goalCityes in listGoal)
             {
-                Initializer();
-                nodeStart = listNode.FirstOrDefault(x => x.Name == goalCityes.Split(' ')[0]);
-                nodeFinish = listNode.FirstOrDefault(x => x.Name == goalCityes.Split(' ')[1]);
-                nodeStart.From = "-";
-                nodeStart.Weight = 0;
+                Initializer(ref nodeStart,ref nodeFinish, goalCityes);
+
                 SearchPath(nodeStart,nodeFinish);
 
                 if (limitWasReached)
@@ -109,17 +106,25 @@ namespace _002_the_list_of_cities
             }
         }
 
-        private void Initializer()
+        private void Initializer(ref Node nodeStart, ref Node nodeFinish, string goalCityes)//Initialization of data
         {
-            foreach (Node item in listNode)
+            foreach (Node item in listNode)//reset
             {
                 item.Weight = long.MaxValue;
                 item.From = "-";
             }
+
             limitWasReached = false;
+
+            nodeStart = listNode.FirstOrDefault(x => x.Name == goalCityes.Split(' ')[0]);//find node by name
+            nodeFinish = listNode.FirstOrDefault(x => x.Name == goalCityes.Split(' ')[1]);//find node by name
+
+            nodeStart.From = "-";
+            nodeStart.Weight = 0;
+
         }
 
-        private void SearchPath(Node nodeStart, Node nodeFinish)
+        private void SearchPath(Node nodeStart, Node nodeFinish)//search by the method of Dijkstra
         {
             if (nodeStart == nodeFinish) //end of search
             {
